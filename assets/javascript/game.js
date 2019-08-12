@@ -8,23 +8,25 @@ let guesses = 9;
 let guessesRemaining = 9;
 var guessesSoFar = [];
 var letterToGuess = null;
-
+// debugger;
 // Have the computer generate a random letter from the array.
-var computerGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+var letterToGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+console.log(letterToGuess);
+
 // Give the user 9 guesses
 function updateGuessesRemaining() {
     // Changes the html to guessesRemaining
     document.querySelector('#guessesRemaining').innerHTML = "Guesses Left: " + guessesRemaining;
 };
-
 // Update the letterToGuess
 function updateletterToGuess() {
-    this.letterToGuess = this.computerChoice(Math.floor(Math.random() * this.computerChoice.length));
+    letterToGuess = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+    console.log(letterToGuess);
 };
 
 // Update the letters that the user has guessed already. Take what the user has input so far and display
 function updateGuessesSoFar() {
-    document.querySelector('#let').innerHTML = "Your Guesses So Far: " + guessesSoFar.join(', ');
+    document.querySelector('#guessesSoFar').innerHTML = "Your Guesses So Far: " + guessesSoFar.join(', ');
 
 };
 
@@ -35,13 +37,10 @@ var Reset = function () {
     guessesSoFar = [];
      {
         updateletterToGuess();
-        updateGuessesLeft();
+        updateGuessesRemaining();
         updateGuessesSoFar();
     }
-
-    updateletterToGuess();
-    updateGuessesLeft();
-
+}
 
 // Set key release so it becomes users guess
 document.onkeyup = function(event) {
@@ -55,8 +54,8 @@ document.onkeyup = function(event) {
     else if (check === true) {
         // If the user's choice was a char, it will add the guess to the array of guessed letters
         guessesRemaining --; 
-        guessedSoFar.push(usersGuess);
-        updateGuessRemaining();
+        guessesSoFar.push(userGuess);
+        updateGuessesRemaining();
         updateGuessesSoFar();
 
         if (guessesRemaining > 0) {
@@ -79,4 +78,3 @@ document.onkeyup = function(event) {
     alert("Error");
 }
 };
-}
